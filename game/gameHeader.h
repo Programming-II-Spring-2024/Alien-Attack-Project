@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 // these two lines are specific to the SFML graphics library. 
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics.hpp>  
 using namespace sf;
 
 // Constants for the game 
