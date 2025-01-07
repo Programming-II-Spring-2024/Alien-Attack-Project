@@ -22,16 +22,16 @@ void moveShip(Sprite& ship)
 	/*
 	 *  This first If-then-else-if Block handles 
 	 */
-	if (Keyboard::isKeyPressed(Keyboard::Left))
+	if (Keyboard::isKeyPressed(Keyboard::Key::Left))
 	{
 		// left arrow is pressed: move our ship left 5 pixels ( this is -5 pixels to go left)
 		// 2nd parm is y direction. We don't want to move up/down, so it's zero.
-		ship.move(-DISTANCE, 0);
+		ship.move({ -DISTANCE, 0 });
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::Right))
+	else if (Keyboard::isKeyPressed(Keyboard::Key::Right))
 	{
 		// right arrow is pressed: move our ship right 5 pixels
-		ship.move(DISTANCE, 0);
+		ship.move({ DISTANCE, 0 });
 	}
 	
 

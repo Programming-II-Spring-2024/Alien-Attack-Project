@@ -8,7 +8,7 @@ int main()
 {
 	// Create the window for graphics. 
 	//  The "aliens" is the text in the title bar on the window. 
-	RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "aliens!");
+	RenderWindow window(VideoMode({ WINDOW_WIDTH, WINDOW_HEIGHT }), "aliens!");
 	
 	// Limit the framerate to 60 frames per second
 	window.setFramerateLimit(60);
@@ -40,14 +40,13 @@ int main()
 	// A sprite is a thing we can draw and manipulate on the screen.
 	// We have to give it a "texture" to specify what it looks like
 
-	Sprite background; // the background is a sprite, though we'll never move it around. 
-	background.setTexture(starsTexture); // load the starsTexture object into the sprite.
+	Sprite background(starsTexture); // the background is a sprite, though we'll never move it around. 
+	
 	// The texture file is 640x480, so scale it up a little to cover 800x600 window
-	background.setScale(1.5, 1.5);
-
+	background.setScale({1.2, 1.2});
+	
 	// create sprite and texture it
-	Sprite ship;
-	ship.setTexture(shipTexture);
+	Sprite ship(shipTexture);
 
 	// *** You will have to code to load the  texture for the missile here. 
 	// Then create the missile Sprite...  
@@ -55,7 +54,7 @@ int main()
 	// initial position of the ship will be approx middle of screen
 	float shipX = window.getSize().x / 2.0f;
 	float shipY = window.getSize().y / 2.0f;
-	ship.setPosition(shipX, shipY);
+	ship.setPosition({ shipX, shipY });
 
 	bool isMissileInFlight = false; // used to know if a missile is 'on screen'. 
 
@@ -63,17 +62,17 @@ int main()
 	{
 		// check all the window's events that were triggered since the last iteration of the loop
 		// For now, we just need this so we can click on the window and close it
-		Event event;
+		
 
 		// This while loop checks to see if anything happened since last time
 		// we drew the window and all its graphics. 
-		while (window.pollEvent(event))
+		while (const std::optional event = window.pollEvent())
 		{
-			if (event.type == Event::Closed) // Did the user kill the window by pressing the "X"?
+			if (event->is<sf::Event::Closed>()) // Did the user kill the window by pressing the "X"?
 				window.close();
-			else if (event.type == Event::KeyPressed) // did the user press a key on the keyboard?
+			else if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>()) // did the user press a key on the keyboard?
 			{
-				if (event.key.code == Keyboard::Space && !isMissileInFlight)
+				if (keyPressed->scancode == sf::Keyboard::Scancode::Space)
 				{
 					isMissileInFlight = true;
 					// You add the code to initialize missile position
