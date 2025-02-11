@@ -1,7 +1,7 @@
 #include "gameHeader.h"
 /*
 * Put your own file documentation here.
-*
+* you can delete other comments if you want to. 
 */
 
 // note: a Sprite represents an image on screen. A sprite knows and remembers its own position
