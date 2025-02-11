@@ -9,7 +9,7 @@
 // the current position of the ship. 
 // x is horizontal, y is vertical. 
 // 0,0 is in the UPPER LEFT of the screen, y increases DOWN the screen
-
+     
 /*
 *  moveShip - This function is called to handle a keyPress event. 
 *     Keyboard input is detected and ship is moved.
